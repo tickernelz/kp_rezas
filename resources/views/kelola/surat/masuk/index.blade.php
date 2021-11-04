@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'List Pengguna')
+@section('title', 'List Surat Masuk')
 
 @section('content_header')
     <h1>List Surat Masuk</h1>
@@ -18,17 +18,18 @@
         'Nomor Surat',
         'Kepada',
         'Perihal',
+        'File',
         'Aksi',
     ];
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center'], ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
 @section('content')
-    <x-adminlte-datatable id="table" :config="$config" :heads="$heads" striped hoverable bordered>
+    <x-adminlte-datatable id="table" :config="$config" :heads="$heads" hoverable bordered beautify>
         @foreach($data as $li)
             <tr>
                 <td>{!! $li->nomor_urut !!}</td>
@@ -40,10 +41,31 @@ $config = [
                 <td>{!! $li->kepada !!}</td>
                 <td>{!! $li->perihal !!}</td>
                 <td>
+                    @if (isset($li->file))
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a type="button" class="btn btn-sm btn-secondary"
+                               href="/file/{{$li->file}}">
+                                Lihat
+                            </a>
+                            <a type="button" class="btn btn-sm btn-secondary"
+                               href="{{ Request::url() }}/hapus-berkas/{{$li->id}}"
+                               onclick="return confirm('Yakin Mau Dihapus?');">
+                                Hapus
+                            </a>
+                        </div>
+                    @else
+                        Tidak Ada Berkas
+                    @endif
+                </td>
+                <td>
                     <div class="btn-group btn-group-sm" role="group">
                         <a type="button" class="btn btn-secondary"
                            href="{{ Request::url() }}/edit/{{$li->id}}">
                             <i class="fa fa-edit"></i>
+                        </a>
+                        <a type="button" class="btn btn-secondary"
+                           href="{{ Request::url() }}/lihat/{{$li->id}}">
+                            <i class="fa fa-file-archive"></i>
                         </a>
                         <a type="button" class="btn btn-secondary"
                            href="{{ Request::url() }}/hapus/{{$li->id}}"

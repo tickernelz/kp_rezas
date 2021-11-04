@@ -23,7 +23,7 @@ class CreateSuratMasuksTable extends Migration
             $table->string('pengirim');
             $table->string('kepada');
             $table->longText('perihal');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->string('operator');
             $table->timestamps();
         });

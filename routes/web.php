@@ -42,7 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('kelola/surat/masuk/tambah/post', [SuratMasukController::class, 'tambah'])->name('tambah.post.surat.masuk');
         Route::get('kelola/surat/masuk/edit/{id}', [SuratMasukController::class, 'editindex'])->name('edit.index.surat.masuk');
         Route::post('kelola/surat/masuk/edit/{id}/post', [SuratMasukController::class, 'edit'])->name('edit.post.surat.masuk');
+        Route::get('kelola/surat/masuk/lihat/{id}', [SuratMasukController::class, 'lihat'])->name('lihat.surat.masuk');
         Route::get('kelola/surat/masuk/hapus/{id}', [SuratMasukController::class, 'hapus'])->name('hapus.surat.masuk');
+        Route::get('kelola/surat/masuk/hapus-berkas/{id}', [SuratMasukController::class, 'hapus_berkas'])->name('hapus.berkas.surat.masuk');
     });
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
