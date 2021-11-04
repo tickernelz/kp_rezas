@@ -1,21 +1,19 @@
 @extends('adminlte::page')
 
-@section('title', 'List Surat Masuk')
+@section('title', 'List Surat Keluar')
 
 @section('content_header')
-    <h1>List Surat Masuk</h1>
+    <h1>List Surat Keluar</h1>
 @stop
 
 @section('plugins.Datatables', true)
 
 @php
     $heads = [
-        'No Urut',
-        'Tanggal Masuk',
+        'Nomor Surat',
+        'Tanggal Keluar',
         'Kode Surat',
         'Tanggal Surat',
-        'Pengirim',
-        'Nomor Surat',
         'Kepada',
         'Perihal',
         'File',
@@ -24,7 +22,7 @@
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center'], ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center'], ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -40,12 +38,10 @@ $config = [
             <x-adminlte-datatable id="table" :config="$config" :heads="$heads" hoverable bordered beautify>
                 @foreach($data as $li)
                     <tr>
-                        <td>{!! $li->nomor_urut !!}</td>
-                        <td>{!! $li->tanggal_masuk !!}</td>
+                        <td>{!! $li->nomor_surat !!}</td>
+                        <td>{!! $li->tanggal_keluar !!}</td>
                         <td>{!! $li->kode !!}</td>
                         <td>{!! $li->tanggal_surat !!}</td>
-                        <td>{!! $li->pengirim !!}</td>
-                        <td>{!! $li->nomor_surat !!}</td>
                         <td>{!! $li->kepada !!}</td>
                         <td>{!! $li->perihal !!}</td>
                         <td>
@@ -88,6 +84,5 @@ $config = [
         </div>
         <!-- /.card-body -->
     </div>
-
 @stop
 

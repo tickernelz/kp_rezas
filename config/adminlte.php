@@ -277,6 +277,21 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Surat Keluar',
+            'icon' => 'fas fa-fw fa-paper-plane',
+            'can' => 'kelola surat',
+            'submenu' => [
+                [
+                    'text' => 'List Surat Keluar',
+                    'url' => 'kelola/surat/keluar',
+                ],
+                [
+                    'text' => 'Tambah Surat Keluar',
+                    'url' => 'kelola/surat/keluar/tambah',
+                ],
+            ],
+        ],
     ],
 
     /*
