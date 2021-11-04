@@ -6,6 +6,8 @@
     <h1>Edit Pengguna ({{ $data->nama }})</h1>
 @stop
 
+@section('plugins.Select2', true)
+
 @section('content')
     <div class="col-md-6" style="float:none;margin:auto;">
         <div class="card">

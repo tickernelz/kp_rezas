@@ -262,6 +262,21 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Surat Masuk',
+            'icon' => 'fas fa-fw fa-inbox',
+            'can' => 'kelola surat',
+            'submenu' => [
+                [
+                    'text' => 'List Surat Masuk',
+                    'url' => 'kelola/surat/masuk',
+                ],
+                [
+                    'text' => 'Tambah Surat Masuk',
+                    'url' => 'kelola/surat/masuk/tambah',
+                ],
+            ],
+        ],
     ],
 
     /*

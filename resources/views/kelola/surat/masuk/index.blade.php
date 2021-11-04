@@ -3,24 +3,27 @@
 @section('title', 'List Pengguna')
 
 @section('content_header')
-    <h1>List Pengguna</h1>
+    <h1>List Surat Masuk</h1>
 @stop
 
 @section('plugins.Datatables', true)
 
 @php
     $heads = [
-        '#',
-        'NIP',
-        'Username',
-        'Nama',
-        'Peran',
+        'No Urut',
+        'Tanggal Masuk',
+        'Kode Surat',
+        'Tanggal Surat',
+        'Pengirim',
+        'Nomor Surat',
+        'Kepada',
+        'Perihal',
         'Aksi',
     ];
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -28,11 +31,14 @@ $config = [
     <x-adminlte-datatable id="table" :config="$config" :heads="$heads" striped hoverable bordered>
         @foreach($data as $li)
             <tr>
-                <td>{!! $loop->iteration !!}</td>
-                <td>{!! $li->nip !!}</td>
-                <td>{!! $li->username !!}</td>
-                <td>{!! $li->nama !!}</td>
-                <td>{!! $li->roles->first()->name !!}</td>
+                <td>{!! $li->nomor_urut !!}</td>
+                <td>{!! $li->tanggal_masuk !!}</td>
+                <td>{!! $li->kode !!}</td>
+                <td>{!! $li->tanggal_surat !!}</td>
+                <td>{!! $li->pengirim !!}</td>
+                <td>{!! $li->nomor_surat !!}</td>
+                <td>{!! $li->kepada !!}</td>
+                <td>{!! $li->perihal !!}</td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group">
                         <a type="button" class="btn btn-secondary"
