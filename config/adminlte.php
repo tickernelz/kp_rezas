@@ -301,7 +301,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -320,8 +320,38 @@ return [
                 ],
             ],
         ],
+        'bsCustomFileInput' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
+                ],
+            ],
+        ],
+        'TempusDominus' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment-with-locales.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
+                ],
+            ],
+        ],
         'Select2' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
