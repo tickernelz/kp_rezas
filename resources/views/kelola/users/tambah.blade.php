@@ -32,17 +32,6 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
-                    @if (session('errors'))
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     @csrf
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible">
@@ -58,9 +47,9 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
-                    <x-adminlte-input name="username" label="Username" placeholder="Masukkan Username..."/>
-                    <x-adminlte-input name="nama" label="Nama" placeholder="Masukkan Nama..."/>
-                    <x-adminlte-input name="nip" label="NIP" placeholder="Masukkan NIP..."/>
+                    <x-adminlte-input value="{{ old('username') }}" name="username" label="Username" placeholder="Masukkan Username..."/>
+                    <x-adminlte-input value="{{ old('nama') }}" name="nama" label="Nama" placeholder="Masukkan Nama..."/>
+                    <x-adminlte-input value="{{ old('nip') }}" name="nip" label="NIP" placeholder="Masukkan NIP..."/>
                     <x-adminlte-select2 name="peran" label="Peran" data-placeholder="Pilih Peran...">
                         <option></option>
                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->

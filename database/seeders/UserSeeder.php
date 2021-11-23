@@ -16,16 +16,16 @@ class UserSeeder extends Seeder
     {
         User::create([
             'username' => 'rezas1',
-            'nama' => 'Rezas Super Admin',
+            'nama' => 'Rezas Admin',
             'nip' => '1234561',
             'password' => bcrypt('123'),
-        ])->assignRole('Super Admin');
+        ])->assignRole('Admin');
 
         User::create([
             'username' => 'rezas2',
-            'nama' => 'Rezas Admin',
+            'nama' => 'Rezas Pegawai',
             'nip' => '1234562',
             'password' => bcrypt('123'),
-        ])->assignRole('Admin');
+        ])->assignRole('Pegawai');
     }
 }

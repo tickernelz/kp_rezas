@@ -39,9 +39,6 @@ class SuratMasukController extends Controller
 
     public function editindex(int $id)
     {
-        $conf_tglmasuk= [
-            'locale' => 'id',
-        ];
         $conf_tglsurat= [
             'format' => 'DD/MM/YYYY',
             'locale' => 'id',
@@ -51,12 +48,11 @@ class SuratMasukController extends Controller
         $data = SuratMasuk::find($id);
 
         // Konversi Tanggal
-        $tanggal_masuk = Carbon::parse($data->tanggal_masuk)->format('d/m/Y H.m');
+        $tanggal_masuk = Carbon::parse($data->tanggal_masuk)->format('d/m/Y');
         $tanggal_surat = Carbon::parse($data->tanggal_surat)->format('d/m/Y');
 
         return view('kelola.surat.masuk.edit', [
             'data' => $data,
-            'conf_tglmasuk' => $conf_tglmasuk,
             'conf_tglsurat' => $conf_tglsurat,
             'tanggal_masuk' => $tanggal_masuk,
             'tanggal_surat' => $tanggal_surat,
@@ -65,9 +61,6 @@ class SuratMasukController extends Controller
 
     public function lihat(int $id)
     {
-        $conf_tglmasuk= [
-            'locale' => 'id',
-        ];
         $conf_tglsurat= [
             'format' => 'DD/MM/YYYY',
             'locale' => 'id',
@@ -77,12 +70,11 @@ class SuratMasukController extends Controller
         $data = SuratMasuk::find($id);
 
         // Konversi Tanggal
-        $tanggal_masuk = Carbon::parse($data->tanggal_masuk)->format('d/m/Y H.m');
+        $tanggal_masuk = Carbon::parse($data->tanggal_masuk)->format('d/m/Y');
         $tanggal_surat = Carbon::parse($data->tanggal_surat)->format('d/m/Y');
 
         return view('kelola.surat.masuk.lihat', [
             'data' => $data,
-            'conf_tglmasuk' => $conf_tglmasuk,
             'conf_tglsurat' => $conf_tglsurat,
             'tanggal_masuk' => $tanggal_masuk,
             'tanggal_surat' => $tanggal_surat,
@@ -93,7 +85,7 @@ class SuratMasukController extends Controller
     {
         $request->validate([
             'tanggal_masuk' => 'required',
-            'kode' => 'required|unique:surat_masuks',
+            'kode' => 'required',
             'nomor_urut' => 'required|unique:surat_masuks',
             'nomor_surat' => 'required|unique:surat_masuks',
             'tanggal_surat' => 'required',
@@ -105,8 +97,8 @@ class SuratMasukController extends Controller
         ]);
 
         // Konversi Tanggal
-        $tanggal_masuk = Carbon::parse($request->input('tanggal_masuk'))->format('Y-m-d h:i');
-        $tanggal_surat = Carbon::parse($request->input('tanggal_surat'))->format('Y-m-d');
+        $tanggal_masuk = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_masuk'))->format('Y-m-d');
+        $tanggal_surat = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_surat'))->format('Y-m-d');
 
         // Kirim Data ke Database
         $data = new SuratMasuk;
@@ -139,7 +131,7 @@ class SuratMasukController extends Controller
 
         $request->validate([
             'tanggal_masuk' => 'required',
-            'kode' => 'required|unique:surat_masuks,kode,'.$data->id,
+            'kode' => 'required',
             'nomor_urut' => 'required|unique:surat_masuks,nomor_urut,'.$data->id,
             'nomor_surat' => 'required|unique:surat_masuks,nomor_surat,'.$data->id,
             'tanggal_surat' => 'required',
@@ -151,8 +143,8 @@ class SuratMasukController extends Controller
         ]);
 
         // Konversi Tanggal
-        $tanggal_masuk = Carbon::parse($request->input('tanggal_masuk'))->format('Y-m-d h:i');
-        $tanggal_surat = Carbon::parse($request->input('tanggal_surat'))->format('Y-m-d');
+        $tanggal_masuk = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_masuk'))->format('Y-m-d');
+        $tanggal_surat = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_surat'))->format('Y-m-d');
 
         $data->tanggal_masuk = $tanggal_masuk;
         $data->kode = $request->input('kode');

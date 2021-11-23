@@ -33,20 +33,9 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
-                    @if (session('errors'))
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     @csrf
-                    <x-adminlte-input-date name="tanggal_masuk" value="{{ $tanggal_masuk }}"
-                                           :config="$conf_tglmasuk" placeholder="Masukkan Tanggal Masuk..."
+                    <x-adminlte-input-date name="tanggal_masuk" value="{{ old('tanggal_masuk') ?? $tanggal_masuk }}"
+                                           :config="$conf_tglsurat" placeholder="Masukkan Tanggal Masuk..."
                                            label="Tanggal Masuk">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -54,13 +43,13 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
-                    <x-adminlte-input name="kode" value="{{ $data->kode }}" label="Kode Surat"
-                                      placeholder="Masukkan Kode Surat..."/>
-                    <x-adminlte-input name="nomor_urut" value="{{ $data->nomor_urut }}" label="Nomor Urut"
+                    <x-adminlte-input name="kode" value="{{ old('kode') ?? $data->kode }}" label="Bidang"
+                                      placeholder="Masukkan Bidang..."/>
+                    <x-adminlte-input name="nomor_urut" value="{{ old('nomor_urut') ?? $data->nomor_urut }}" label="Nomor Urut"
                                       placeholder="Masukkan Nomor Urut..."/>
-                    <x-adminlte-input name="nomor_surat" value="{{ $data->nomor_surat }}" label="Nomor Surat"
+                    <x-adminlte-input name="nomor_surat" value="{{ old('nomor_surat') ?? $data->nomor_surat }}" label="Nomor Surat"
                                       placeholder="Masukkan Nomor Surat..."/>
-                    <x-adminlte-input-date name="tanggal_surat" value="{{ $tanggal_surat }}"
+                    <x-adminlte-input-date name="tanggal_surat" value="{{ old('tanggal_surat') ?? $tanggal_surat }}"
                                            :config="$conf_tglsurat" placeholder="Masukkan Tanggal Surat..."
                                            label="Tanggal Surat">
                         <x-slot name="appendSlot">
@@ -69,15 +58,15 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
-                    <x-adminlte-input name="pengirim" value="{{ $data->pengirim }}" label="Pengirim"
+                    <x-adminlte-input name="pengirim" value="{{ old('pengirim') ?? $data->pengirim }}" label="Pengirim"
                                       placeholder="Masukkan Pengirim..."/>
-                    <x-adminlte-input name="kepada" value="{{ $data->kepada }}" label="Kepada"
+                    <x-adminlte-input name="kepada" value="{{ old('kepada') ?? $data->kepada }}" label="Kepada"
                                       placeholder="Masukkan Kepada..."/>
                     <x-adminlte-textarea name="perihal" label="Perihal" placeholder="Perihal...">
-                        {{ $data->perihal }}
+                        {{ old('perihal') ?? $data->perihal }}
                     </x-adminlte-textarea>
                     @if($data->file)
-                        <x-adminlte-input-file name="file" label="Upload File Surat" placeholder="{{ $data->file }}"
+                        <x-adminlte-input-file name="file" label="Upload File Surat" placeholder="{{ old('file') ?? $data->file }}"
                                                disable-feedback/>
                     @else
                         <x-adminlte-input-file name="file" label="Upload File Surat" placeholder="Pilih File..."

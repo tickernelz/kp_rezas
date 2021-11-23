@@ -32,23 +32,12 @@
                         {{ Session::get('success') }}
                     </div>
                 @endif
-                @if (session('errors'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 @csrf
-                    <x-adminlte-input value="{{ $data->username }}" name="username" label="Username"
+                    <x-adminlte-input value="{{ old('username') ?? $data->username }}" name="username" label="Username"
                                       placeholder="Masukkan Username..."/>
-                    <x-adminlte-input value="{{ $data->nama }}" name="nama" label="Nama"
+                    <x-adminlte-input value="{{ old('username') ?? $data->nama }}" name="nama" label="Nama"
                                       placeholder="Masukkan Nama..."/>
-                    <x-adminlte-input value="{{ $data->nip }}" name="nip" label="NIP" placeholder="Masukkan NIP..."/>
+                    <x-adminlte-input value="{{ old('username') ?? $data->nip }}" name="nip" label="NIP" placeholder="Masukkan NIP..."/>
                     <x-adminlte-select2 name="peran" label="Peran" data-placeholder="Pilih Peran...">
                         <option></option>
                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
@@ -59,7 +48,7 @@
                             </option>
                         @endforeach
                     </x-adminlte-select2>
-                    <x-adminlte-input type="password" value="{{ $data->password }}" name="password" label="Password"
+                    <x-adminlte-input type="password" name="password" label="Password"
                                       placeholder="Masukkan Password..."/>
                 </div>
                 <!-- /.card-body -->

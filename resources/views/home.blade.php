@@ -3,11 +3,17 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <div class="text-center">
+        <h1>Selamat Datang di Sistem Informasi Pengarsipan Surat</h1>
+        <br>
+        <h4>Kejaksaan Tinggi Kalimantan Tengah</h4>
+    </div>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <div class="text-center mt-5">
+        <img src="{{ asset('image/logo.png') }}" width="500px" alt="logo">
+    </div>
 @stop
 
 @section('css')

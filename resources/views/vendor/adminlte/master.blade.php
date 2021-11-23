@@ -13,11 +13,7 @@
     @yield('meta_tags')
 
     {{-- Title --}}
-    <title>
-        @yield('title_prefix', config('adminlte.title_prefix', ''))
-        @yield('title', config('adminlte.title', 'AdminLTE 3'))
-        @yield('title_postfix', config('adminlte.title_postfix', ''))
-    </title>
+    <title>@yield('title', config('adminlte.title', 'AdminLTE 3')) | Sistem Informasi Pengarsipan Surat</title>
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
     @yield('adminlte_css_pre')

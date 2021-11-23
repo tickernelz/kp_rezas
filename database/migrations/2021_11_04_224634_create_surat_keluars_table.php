@@ -17,7 +17,7 @@ class CreateSuratKeluarsTable extends Migration
             $table->id();
             $table->string('kode')->unique();
             $table->string('nomor_surat')->unique();
-            $table->dateTime('tanggal_keluar');
+            $table->date('tanggal_keluar');
             $table->date('tanggal_surat');
             $table->string('kepada');
             $table->longText('perihal');

@@ -33,19 +33,8 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
-                    @if (session('errors'))
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     @csrf
-                    <x-adminlte-input-date name="tanggal_keluar" :config="$conf_tglkeluar"
+                    <x-adminlte-input-date value="{{ old('tanggal_keluar') }}" name="tanggal_keluar" :config="$conf_tglsurat"
                                            placeholder="Masukkan Tanggal Keluar..." label="Tanggal Keluar">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -53,9 +42,9 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
-                    <x-adminlte-input name="kode" label="Kode Surat" placeholder="Masukkan Kode Surat..."/>
-                    <x-adminlte-input name="nomor_surat" label="Nomor Surat" placeholder="Masukkan Nomor Surat..."/>
-                    <x-adminlte-input-date name="tanggal_surat" :config="$conf_tglsurat"
+                    <x-adminlte-input value="{{ old('kode') }}" name="kode" label="Kode Surat" placeholder="Masukkan Kode Surat..."/>
+                    <x-adminlte-input value="{{ old('nomor_surat') }}" name="nomor_surat" label="Nomor Surat" placeholder="Masukkan Nomor Surat..."/>
+                    <x-adminlte-input-date value="{{ old('tanggal_surat') }}" name="tanggal_surat" :config="$conf_tglsurat"
                                            placeholder="Masukkan Tanggal Surat..." label="Tanggal Surat">
                         <x-slot name="appendSlot">
                             <div class="input-group-text bg-dark">
@@ -63,8 +52,8 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
-                    <x-adminlte-input name="kepada" label="Kepada" placeholder="Masukkan Kepada..."/>
-                    <x-adminlte-textarea name="perihal" label="Perihal" placeholder="Perihal..."/>
+                    <x-adminlte-input value="{{ old('kepada') }}" name="kepada" label="Kepada" placeholder="Masukkan Kepada..."/>
+                    <x-adminlte-textarea value="{{ old('perihal') }}" name="perihal" label="Perihal" placeholder="Perihal..."/>
                     <x-adminlte-input-file name="file" label="Upload File Surat" placeholder="Pilih File..."
                                            disable-feedback/>
                     <x-adminlte-input value="{{ $user->nama }}" name="operator" label="Operator" readonly/>

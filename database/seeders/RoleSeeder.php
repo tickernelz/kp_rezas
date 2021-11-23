@@ -24,14 +24,14 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'kelola surat']);
 
         $role1 = Role::create([
-            'name' => 'Super Admin',
+            'name' => 'Admin',
             'guard_name' => 'web',
         ]);
         $role1->givePermissionTo('kelola user');
         $role1->givePermissionTo('kelola surat');
 
         $role2 = Role::create([
-            'name' => 'Admin',
+            'name' => 'Pegawai',
             'guard_name' => 'web',
         ]);
         $role2->givePermissionTo('kelola surat');
