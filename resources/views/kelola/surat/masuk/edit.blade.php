@@ -43,10 +43,8 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
-                    <x-adminlte-input name="kode" value="{{ old('kode') ?? $data->kode }}" label="Bidang"
+                    <x-adminlte-input name="bidang" value="{{ old('bidang') ?? $data->bidang }}" label="Bidang"
                                       placeholder="Masukkan Bidang..."/>
-                    <x-adminlte-input name="nomor_urut" value="{{ old('nomor_urut') ?? $data->nomor_urut }}" label="Nomor Urut"
-                                      placeholder="Masukkan Nomor Urut..."/>
                     <x-adminlte-input name="nomor_surat" value="{{ old('nomor_surat') ?? $data->nomor_surat }}" label="Nomor Surat"
                                       placeholder="Masukkan Nomor Surat..."/>
                     <x-adminlte-input-date name="tanggal_surat" value="{{ old('tanggal_surat') ?? $tanggal_surat }}"

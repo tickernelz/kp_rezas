@@ -42,7 +42,7 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
-                    <x-adminlte-input value="{{ old('kode') }}" name="kode" label="Kode Surat" placeholder="Masukkan Kode Surat..."/>
+                    <x-adminlte-input value="{{ old('bidang') }}" name="bidang" label="Bidang" placeholder="Masukkan Bidang..."/>
                     <x-adminlte-input value="{{ old('nomor_surat') }}" name="nomor_surat" label="Nomor Surat" placeholder="Masukkan Nomor Surat..."/>
                     <x-adminlte-input-date value="{{ old('tanggal_surat') }}" name="tanggal_surat" :config="$conf_tglsurat"
                                            placeholder="Masukkan Tanggal Surat..." label="Tanggal Surat">

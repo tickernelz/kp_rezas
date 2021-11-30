@@ -81,7 +81,7 @@ class SuratKeluarController extends Controller
     {
         $request->validate([
             'tanggal_keluar' => 'required',
-            'kode' => 'required',
+            'bidang' => 'required',
             'nomor_surat' => 'required|unique:surat_keluars',
             'tanggal_surat' => 'required',
             'kepada' => 'required',
@@ -97,7 +97,7 @@ class SuratKeluarController extends Controller
         // Kirim Data ke Database
         $data = new SuratKeluar;
         $data->tanggal_keluar = $tanggal_keluar;
-        $data->kode = $request->input('kode');
+        $data->bidang = $request->input('bidang');
         $data->nomor_surat = $request->input('nomor_surat');
         $data->tanggal_surat = $tanggal_surat;
         $data->kepada = $request->input('kepada');
@@ -123,7 +123,7 @@ class SuratKeluarController extends Controller
 
         $request->validate([
             'tanggal_keluar' => 'required',
-            'kode' => 'required',
+            'bidang' => 'required',
             'nomor_surat' => 'required|unique:surat_keluars,nomor_surat,'.$data->id,
             'tanggal_surat' => 'required',
             'kepada' => 'required',
@@ -137,7 +137,7 @@ class SuratKeluarController extends Controller
         $tanggal_surat = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_surat'))->format('Y-m-d');
 
         $data->tanggal_keluar = $tanggal_keluar;
-        $data->kode = $request->input('kode');
+        $data->bidang = $request->input('bidang');
         $data->nomor_surat = $request->input('nomor_surat');
         $data->tanggal_surat = $tanggal_surat;
         $data->kepada = $request->input('kepada');

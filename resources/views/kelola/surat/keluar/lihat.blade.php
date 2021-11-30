@@ -35,8 +35,8 @@
                             <td>{{ $data->tanggal_keluar }}</td>
                         </tr>
                         <tr>
-                            <th>Kode Surat:</th>
-                            <td>{{ $data->kode }}</td>
+                            <th>Bidang:</th>
+                            <td>{{ $data->bidang }}</td>
                         </tr>
                         <tr>
                             <th>Nomor Surat:</th>

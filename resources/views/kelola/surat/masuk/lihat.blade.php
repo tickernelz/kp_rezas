@@ -35,12 +35,8 @@
                             <td>{{ $data->tanggal_masuk }}</td>
                         </tr>
                         <tr>
-                            <th>Kode Surat:</th>
-                            <td>{{ $data->kode }}</td>
-                        </tr>
-                        <tr>
-                            <th>Nomor Urut:</th>
-                            <td>{{ $data->nomor_urut }}</td>
+                            <th>Bidang:</th>
+                            <td>{{ $data->bidang }}</td>
                         </tr>
                         <tr>
                             <th>Nomor Surat:</th>

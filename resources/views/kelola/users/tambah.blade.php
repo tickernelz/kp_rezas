@@ -25,13 +25,6 @@
             <!-- form start -->
             <form action="{{url()->current()}}/post" method="post">
                 <div class="card-body">
-                    @if (Session::has('success'))
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-check"></i> Success!</h5>
-                            {{ Session::get('success') }}
-                        </div>
-                    @endif
                     @csrf
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible">

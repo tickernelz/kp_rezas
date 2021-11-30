@@ -10,9 +10,8 @@
 
 @php
     $heads = [
-        'No Urut',
         'Tanggal Masuk',
-        'Kode Surat',
+        'Bidang',
         'Tanggal Surat',
         'Pengirim',
         'Nomor Surat',
@@ -24,7 +23,7 @@
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center'], ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center'], ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -40,9 +39,8 @@ $config = [
             <x-adminlte-datatable id="table" :config="$config" :heads="$heads" hoverable bordered beautify>
                 @foreach($data as $li)
                     <tr>
-                        <td>{!! $li->nomor_urut !!}</td>
                         <td>{!! $li->tanggal_masuk !!}</td>
-                        <td>{!! $li->kode !!}</td>
+                        <td>{!! $li->bidang !!}</td>
                         <td>{!! $li->tanggal_surat !!}</td>
                         <td>{!! $li->pengirim !!}</td>
                         <td>{!! $li->nomor_surat !!}</td>

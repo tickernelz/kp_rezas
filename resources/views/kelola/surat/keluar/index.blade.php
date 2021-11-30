@@ -12,7 +12,7 @@
     $heads = [
         'Nomor Surat',
         'Tanggal Keluar',
-        'Kode Surat',
+        'Bidang',
         'Tanggal Surat',
         'Kepada',
         'Perihal',
@@ -40,7 +40,7 @@ $config = [
                     <tr>
                         <td>{!! $li->nomor_surat !!}</td>
                         <td>{!! $li->tanggal_keluar !!}</td>
-                        <td>{!! $li->kode !!}</td>
+                        <td>{!! $li->bidang !!}</td>
                         <td>{!! $li->tanggal_surat !!}</td>
                         <td>{!! $li->kepada !!}</td>
                         <td>{!! $li->perihal !!}</td>

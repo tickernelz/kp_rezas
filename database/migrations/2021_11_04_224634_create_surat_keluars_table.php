@@ -15,7 +15,7 @@ class CreateSuratKeluarsTable extends Migration
     {
         Schema::create('surat_keluars', function (Blueprint $table) {
             $table->id();
-            $table->string('kode')->unique();
+            $table->string('bidang');
             $table->string('nomor_surat')->unique();
             $table->date('tanggal_keluar');
             $table->date('tanggal_surat');

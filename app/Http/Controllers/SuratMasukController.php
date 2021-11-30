@@ -85,8 +85,7 @@ class SuratMasukController extends Controller
     {
         $request->validate([
             'tanggal_masuk' => 'required',
-            'kode' => 'required',
-            'nomor_urut' => 'required|unique:surat_masuks',
+            'bidang' => 'required',
             'nomor_surat' => 'required|unique:surat_masuks',
             'tanggal_surat' => 'required',
             'pengirim' => 'required',
@@ -103,8 +102,7 @@ class SuratMasukController extends Controller
         // Kirim Data ke Database
         $data = new SuratMasuk;
         $data->tanggal_masuk = $tanggal_masuk;
-        $data->kode = $request->input('kode');
-        $data->nomor_urut = $request->input('nomor_urut');
+        $data->bidang = $request->input('bidang');
         $data->nomor_surat = $request->input('nomor_surat');
         $data->tanggal_surat = $tanggal_surat;
         $data->pengirim = $request->input('pengirim');
@@ -131,8 +129,7 @@ class SuratMasukController extends Controller
 
         $request->validate([
             'tanggal_masuk' => 'required',
-            'kode' => 'required',
-            'nomor_urut' => 'required|unique:surat_masuks,nomor_urut,'.$data->id,
+            'bidang' => 'required',
             'nomor_surat' => 'required|unique:surat_masuks,nomor_surat,'.$data->id,
             'tanggal_surat' => 'required',
             'pengirim' => 'required',
@@ -147,8 +144,7 @@ class SuratMasukController extends Controller
         $tanggal_surat = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_surat'))->format('Y-m-d');
 
         $data->tanggal_masuk = $tanggal_masuk;
-        $data->kode = $request->input('kode');
-        $data->nomor_urut = $request->input('nomor_urut');
+        $data->bidang = $request->input('bidang');
         $data->nomor_surat = $request->input('nomor_surat');
         $data->tanggal_surat = $tanggal_surat;
         $data->pengirim = $request->input('pengirim');
