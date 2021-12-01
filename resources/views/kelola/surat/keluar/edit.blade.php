@@ -33,6 +33,13 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
+                        @if (Session::has('error'))
+                            <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h5><i class="icon fas fa-check"></i> Error!</h5>
+                                {{ Session::get('error') }}
+                            </div>
+                        @endif
                     @csrf
                     <x-adminlte-input-date name="tanggal_keluar" value="{{ old('tanggal_keluar') ?? $tanggal_keluar }}"
                                            :config="$conf_tglsurat" placeholder="Masukkan Tanggal Keluar..."

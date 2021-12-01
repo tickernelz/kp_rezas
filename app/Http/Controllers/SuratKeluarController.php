@@ -94,6 +94,11 @@ class SuratKeluarController extends Controller
         $tanggal_keluar = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_keluar'))->format('Y-m-d');
         $tanggal_surat = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_surat'))->format('Y-m-d');
 
+        // Cek Tanggal
+        if ($tanggal_surat > $tanggal_keluar) {
+            return back()->with('error', 'Tanggal Surat Tidak Boleh Lebih Dari Tanggal Keluar!');
+        }
+
         // Kirim Data ke Database
         $data = new SuratKeluar;
         $data->tanggal_keluar = $tanggal_keluar;
@@ -135,6 +140,11 @@ class SuratKeluarController extends Controller
         // Konversi Tanggal
         $tanggal_keluar = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_keluar'))->format('Y-m-d');
         $tanggal_surat = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_surat'))->format('Y-m-d');
+
+        // Cek Tanggal
+        if ($tanggal_surat > $tanggal_keluar) {
+            return back()->with('error', 'Tanggal Surat Tidak Boleh Lebih Dari Tanggal Keluar!');
+        }
 
         $data->tanggal_keluar = $tanggal_keluar;
         $data->bidang = $request->input('bidang');
