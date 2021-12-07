@@ -24,9 +24,19 @@ class UserController extends Controller
     {
         // Get Data
         $roles = Role::all();
+        $bidang = [
+            'Tata Usaha',
+            'Pembinaan',
+            'Intellijen',
+            'Tindak Pidana Umum',
+            'Tindak Pidana Khusus',
+            'Perdata dan TUN',
+            'Pengawasan'
+        ];
 
         return view('kelola.users.tambah', [
             'roles' => $roles,
+            'bidang' => $bidang,
         ]);
     }
 
@@ -35,10 +45,20 @@ class UserController extends Controller
         // Get Data
         $data = User::with('roles')->find($id);
         $roles = Role::all();
+        $bidang = [
+            'Tata Usaha',
+            'Pembinaan',
+            'Intellijen',
+            'Tindak Pidana Umum',
+            'Tindak Pidana Khusus',
+            'Perdata dan TUN',
+            'Pengawasan'
+        ];
 
         return view('kelola.users.edit', [
             'data' => $data,
             'roles' => $roles,
+            'bidang' => $bidang,
         ]);
     }
 
@@ -49,21 +69,19 @@ class UserController extends Controller
             'nama' => 'required|string',
             'nip' => 'required|unique:users',
             'peran' => 'required|string',
+            'bidang' => 'required|string',
         ]);
 
         // Get Request
-        $get_username = $request->input('username');
-        $get_nama = $request->input('nama');
-        $get_nip = $request->input('nip');
         $get_status = Crypt::decrypt($request->input('peran'));
-        $get_password = bcrypt($request->input('password'));
 
         // Kirim Data ke Database
         $user = new User;
-        $user->username = $get_username;
-        $user->nama = $get_nama;
-        $user->nip = $get_nip;
-        $user->password = $get_password;
+        $user->username = $request->input('username');
+        $user->nama = $request->input('nama');
+        $user->nip = $request->input('nip');
+        $user->bidang = $request->input('bidang');
+        $user->password = bcrypt($request->input('password'));
         $user->save();
         $user->assignRole($get_status);
 
@@ -79,6 +97,7 @@ class UserController extends Controller
             'nama' => 'required|string',
             'nip' => 'required|unique:users,nip,'.$data->id,
             'peran' => 'required|string',
+            'bidang' => 'required|string',
         ]);
 
         // Get Request
@@ -91,6 +110,7 @@ class UserController extends Controller
         $data->username =$request->input('username');
         $data->nama = $request->input('nama');
         $data->nip = $request->input('nip');
+        $data->bidang = $request->input('bidang');
         $data->save();
         $data->assignRole($get_status);
 

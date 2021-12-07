@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * App\Models\SuratKeluar
  *
  * @property int $id
- * @property string $kode
+ * @property string $bidang
  * @property string $nomor_surat
  * @property string $tanggal_keluar
  * @property string $tanggal_surat
@@ -22,11 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereBidang($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereFile($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereKepada($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereKode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereNomorSurat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar whereOperator($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SuratKeluar wherePerihal($value)

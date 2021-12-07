@@ -3,7 +3,7 @@
 @section('title', 'Tambah Surat Masuk')
 
 @section('content_header')
-    <h1>Tambah Surat Masuk</h1>
+    <h1>Tambah Surat Masuk ({{ Auth::user()->bidang }})</h1>
 @stop
 
 @section('plugins.TempusDominus', true)
@@ -50,8 +50,6 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
-                    <x-adminlte-input value="{{ old('bidang') }}" name="bidang" label="Bidang"
-                                      placeholder="Masukkan Bidang..."/>
                     <x-adminlte-input value="{{ old('nomor_surat') }}" name="nomor_surat" label="Nomor Surat"
                                       placeholder="Masukkan Nomor Surat..."/>
                     <x-adminlte-input-date value="{{ old('tanggal_surat') }}" name="tanggal_surat"
@@ -69,7 +67,7 @@
                                       placeholder="Masukkan Kepada..."/>
                     <x-adminlte-textarea value="{{ old('perihal') }}" name="perihal" label="Perihal"
                                          placeholder="Perihal..."/>
-                    <x-adminlte-input-file name="file" label="Upload File Surat" placeholder="Pilih File..."
+                    <x-adminlte-input-file name="file" label="Upload File Surat" accept="application/pdf" placeholder="Pilih File..."
                                            disable-feedback/>
                     <x-adminlte-input value="{{ $user->nama }}" name="operator" label="Operator" readonly/>
                 </div>

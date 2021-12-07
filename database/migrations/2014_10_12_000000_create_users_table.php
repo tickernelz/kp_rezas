@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nip')->unique();
             $table->string('nama');
+            $table->enum('bidang', ['Tata Usaha', 'Pembinaan', 'Intellijen', 'Tindak Pidana Umum', 'Tindak Pidana Khusus', 'Perdata dan TUN', 'Pengawasan']);
             $table->string('username')->unique();
             $table->string('password');
             $table->rememberToken();

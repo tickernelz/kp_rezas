@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'username' => 'rezas1',
             'nama' => 'Rezas Admin',
             'nip' => '1234561',
+            'bidang' => 'Tata Usaha',
             'password' => bcrypt('123'),
         ])->assignRole('Admin');
 
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
             'username' => 'rezas2',
             'nama' => 'Rezas Pegawai',
             'nip' => '1234562',
+            'bidang' => 'Pembinaan',
             'password' => bcrypt('123'),
         ])->assignRole('Pegawai');
     }

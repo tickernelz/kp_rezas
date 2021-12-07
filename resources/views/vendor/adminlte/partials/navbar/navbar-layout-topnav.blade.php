@@ -39,6 +39,9 @@
 
             {{-- User menu link --}}
             @if(Auth::user())
+                <li class="nav-item">
+                    <span class="nav-link">Bidang {{ Auth::user()->bidang }}</span>
+                </li>
                 @if(config('adminlte.usermenu_enabled'))
                     @include('adminlte::partials.navbar.menu-item-dropdown-user-menu')
                 @else

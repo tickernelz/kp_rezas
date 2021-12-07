@@ -15,7 +15,17 @@ class AuthController extends Controller
             return redirect()->route('home');
         }
 
-        return view('auth.login');
+        $bidang = [
+            'Tata Usaha',
+            'Pembinaan',
+            'Intellijen',
+            'Tindak Pidana Umum',
+            'Tindak Pidana Khusus',
+            'Perdata dan TUN',
+            'Pengawasan'
+        ];
+
+        return view('auth.login', compact('bidang'));
     }
 
     public function login(Request $request)
@@ -23,11 +33,13 @@ class AuthController extends Controller
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
+            'bidang' => 'required|string',
         ]);
 
         $data = [
             'username' => $request->input('username'),
             'password' => $request->input('password'),
+            'bidang' => $request->input('bidang'),
         ];
         $remember_me = $request->has('remember');
 
@@ -38,7 +50,6 @@ class AuthController extends Controller
             return redirect()->route('home');
         }
 
-// false
         Session::flash('error', 'Username atau password salah');
 
         return redirect()->route('login');

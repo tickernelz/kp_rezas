@@ -14,6 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int $id
  * @property string $nip
  * @property string $nama
+ * @property string $bidang
  * @property string $username
  * @property string $password
  * @property string|null $remember_token
@@ -33,6 +34,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBidang($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereNama($value)

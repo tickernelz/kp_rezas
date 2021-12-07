@@ -11,11 +11,44 @@ class SuratMasukController extends Controller
 {
     public function index()
     {
+        $conf_tglsurat= [
+            'format' => 'DD/MM/YYYY',
+            'locale' => 'id',
+        ];
+
         // Get Data
-        $data = SuratMasuk::get();
+        $user = Auth::user();
+        $data = SuratMasuk::where('bidang', $user->bidang)->get();
 
         return view('kelola.surat.masuk.index', [
             'data' => $data,
+            'conf_tglsurat' => $conf_tglsurat,
+        ]);
+    }
+
+    public function cari(Request $request)
+    {
+        $conf_tglsurat= [
+            'format' => 'DD/MM/YYYY',
+            'locale' => 'id',
+        ];
+
+        // Konversi Tanggal
+        $tanggal_awal = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_awal'))->format('Y-m-d');
+        $tanggal_akhir = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_akhir'))->format('Y-m-d');
+
+        // Cek Tanggal
+        if ($tanggal_awal > $tanggal_akhir) {
+            return back()->with('error', 'Tanggal Awal Tidak Boleh Lebih Dari Tanggal Akhir!');
+        }
+
+        // Get Data
+        $user = Auth::user();
+        $data = SuratMasuk::where('bidang', $user->bidang)->whereBetween('tanggal_masuk', [$tanggal_awal, $tanggal_akhir])->get();
+
+        return view('kelola.surat.masuk.index', [
+            'data' => $data,
+            'conf_tglsurat' => $conf_tglsurat,
         ]);
     }
 
@@ -85,7 +118,6 @@ class SuratMasukController extends Controller
     {
         $request->validate([
             'tanggal_masuk' => 'required',
-            'bidang' => 'required',
             'nomor_surat' => 'required|unique:surat_masuks',
             'tanggal_surat' => 'required',
             'pengirim' => 'required',
@@ -107,7 +139,7 @@ class SuratMasukController extends Controller
         // Kirim Data ke Database
         $data = new SuratMasuk;
         $data->tanggal_masuk = $tanggal_masuk;
-        $data->bidang = $request->input('bidang');
+        $data->bidang = Auth::user()->bidang;
         $data->nomor_surat = $request->input('nomor_surat');
         $data->tanggal_surat = $tanggal_surat;
         $data->pengirim = $request->input('pengirim');
@@ -134,7 +166,6 @@ class SuratMasukController extends Controller
 
         $request->validate([
             'tanggal_masuk' => 'required',
-            'bidang' => 'required',
             'nomor_surat' => 'required|unique:surat_masuks,nomor_surat,'.$data->id,
             'tanggal_surat' => 'required',
             'pengirim' => 'required',
@@ -154,7 +185,7 @@ class SuratMasukController extends Controller
         }
 
         $data->tanggal_masuk = $tanggal_masuk;
-        $data->bidang = $request->input('bidang');
+        $data->bidang = Auth::user()->bidang;
         $data->nomor_surat = $request->input('nomor_surat');
         $data->tanggal_surat = $tanggal_surat;
         $data->pengirim = $request->input('pengirim');

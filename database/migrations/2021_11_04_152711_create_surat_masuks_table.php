@@ -15,7 +15,7 @@ class CreateSuratMasuksTable extends Migration
     {
         Schema::create('surat_masuks', function (Blueprint $table) {
             $table->id();
-            $table->string('bidang');
+            $table->enum('bidang', ['Tata Usaha', 'Pembinaan', 'Intellijen', 'Tindak Pidana Umum', 'Tindak Pidana Khusus', 'Perdata dan TUN', 'Pengawasan']);
             $table->string('nomor_surat')->unique();
             $table->date('tanggal_masuk');
             $table->date('tanggal_surat');

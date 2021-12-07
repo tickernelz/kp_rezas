@@ -3,15 +3,15 @@
 @section('title', 'List Surat Masuk')
 
 @section('content_header')
-    <h1>List Surat Masuk</h1>
+    <h1>List Surat Masuk ({{ Auth::user()->bidang }})</h1>
 @stop
 
 @section('plugins.Datatables', true)
+@section('plugins.TempusDominus', true)
 
 @php
     $heads = [
         'Tanggal Masuk',
-        'Bidang',
         'Tanggal Surat',
         'Pengirim',
         'Nomor Surat',
@@ -23,11 +23,52 @@
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center'], ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center'], ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
 @section('content')
+    <div class="card card-default">
+        <div class="card-header">
+            <h3 class="card-title">
+                Filter Tanggal Masuk Surat
+            </h3>
+        </div>
+        <!-- /.card-header -->
+        <form action="{{ route('cari.surat.masuk') }}" method="get" enctype="multipart/form-data">
+            <div class="card-body">
+                @if (Session::has('error'))
+                    <div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-exclamation"></i> Error</h5>
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
+                <x-adminlte-input-date value="{{ Request::get('tanggal_awal') ?? old('tanggal_awal') }}" name="tanggal_awal"
+                                       :config="$conf_tglsurat"
+                                       placeholder="Masukkan Tanggal Awal..." label="Tanggal Awal">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input-date>
+                <x-adminlte-input-date value="{{ Request::get('tanggal_akhir') ?? old('tanggal_akhir') }}" name="tanggal_akhir"
+                                       :config="$conf_tglsurat"
+                                       placeholder="Masukkan Tanggal Akhir..." label="Tanggal Akhir">
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text bg-dark">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input-date>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Cari</button>
+            </div>
+        </form>
+    </div>
     <div class="card card-default">
         <div class="card-header">
             <h3 class="card-title">
@@ -40,7 +81,6 @@ $config = [
                 @foreach($data as $li)
                     <tr>
                         <td>{!! $li->tanggal_masuk !!}</td>
-                        <td>{!! $li->bidang !!}</td>
                         <td>{!! $li->tanggal_surat !!}</td>
                         <td>{!! $li->pengirim !!}</td>
                         <td>{!! $li->nomor_surat !!}</td>
@@ -86,6 +126,5 @@ $config = [
         </div>
         <!-- /.card-body -->
     </div>
-
 @stop
 

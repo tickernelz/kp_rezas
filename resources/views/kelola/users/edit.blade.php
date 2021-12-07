@@ -25,19 +25,27 @@
             <!-- form start -->
             <form action="{{url()->current()}}/post" method="post">
                 <div class="card-body">
-                @if (Session::has('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icon fas fa-check"></i> Success!</h5>
-                        {{ Session::get('success') }}
-                    </div>
-                @endif
-                @csrf
+                    @if (Session::has('success'))
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-check"></i> Success!</h5>
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
+                    @csrf
                     <x-adminlte-input value="{{ old('username') ?? $data->username }}" name="username" label="Username"
                                       placeholder="Masukkan Username..."/>
                     <x-adminlte-input value="{{ old('username') ?? $data->nama }}" name="nama" label="Nama"
                                       placeholder="Masukkan Nama..."/>
-                    <x-adminlte-input value="{{ old('username') ?? $data->nip }}" name="nip" label="NIP" placeholder="Masukkan NIP..."/>
+                    <x-adminlte-input value="{{ old('username') ?? $data->nip }}" name="nip" label="NIP"
+                                      placeholder="Masukkan NIP..."/>
                     <x-adminlte-select2 name="peran" label="Peran" data-placeholder="Pilih Peran...">
                         <option></option>
                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
@@ -46,6 +54,15 @@
                                     selected="selected"
                                     @endif value="{{ Crypt::encrypt($list->id) }}">{{ $list->name }}
                             </option>
+                        @endforeach
+                    </x-adminlte-select2>
+                    <x-adminlte-select2 name="bidang" label="Bidang" data-placeholder="Pilih Bidang...">
+                        <option></option>
+                        <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                        @foreach($bidang as $list)
+                            <option @if ($data->bidang == $list)
+                                    selected="selected"
+                                    @endif value="{{ $list }}">{{ $list }}</option>
                         @endforeach
                     </x-adminlte-select2>
                     <x-adminlte-input type="password" name="password" label="Password"

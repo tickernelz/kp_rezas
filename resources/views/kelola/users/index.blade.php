@@ -15,12 +15,13 @@
         'Username',
         'Nama',
         'Peran',
+        'Bidang',
         'Aksi',
     ];
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -41,6 +42,7 @@ $config = [
                         <td>{!! $li->username !!}</td>
                         <td>{!! $li->nama !!}</td>
                         <td>{!! $li->roles->first()->name !!}</td>
+                        <td>{!! $li->bidang !!}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
                                 <a type="button" class="btn btn-secondary"

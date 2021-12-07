@@ -20,11 +20,38 @@
 
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
+@section('plugins.Select2', true)
+
+@section('title', 'Login')
+
 @section('auth_body')
     <form action="{{ route('post-login') }}" method="post">
         {{ csrf_field() }}
 
-        {{-- Email field --}}
+        @if (Session::has('error'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                {{ Session::get('error') }}
+            </div>
+        @endif
+
+        {{-- Bidang field --}}
+        <x-adminlte-select2 name="bidang" data-placeholder="Pilih Bidang..." autofocus>
+            <option></option>
+            <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+            @foreach($bidang as $list)
+                <option
+                    value="{{ $list }}">{{ $list }}</option>
+            @endforeach
+        </x-adminlte-select2>
+        @if($errors->has('bidang'))
+            <div class="invalid-feedback">
+                <strong>{{ $errors->first('bidang') }}</strong>
+            </div>
+        @endif
+
+        {{-- Username field --}}
         <div class="input-group mb-3">
             <input type="text" name="username" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
                    value="{{ old('username') }}" placeholder="Username" autofocus>

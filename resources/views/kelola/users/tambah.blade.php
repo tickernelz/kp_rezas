@@ -51,6 +51,14 @@
                                 value="{{ Crypt::encrypt($list->id) }}">{{ $list->name }}</option>
                         @endforeach
                     </x-adminlte-select2>
+                    <x-adminlte-select2 name="bidang" label="Bidang" data-placeholder="Pilih Bidang...">
+                        <option></option>
+                        <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                        @foreach($bidang as $list)
+                            <option
+                                value="{{ $list }}">{{ $list }}</option>
+                        @endforeach
+                    </x-adminlte-select2>
                     <x-adminlte-input type="password" name="password" label="Password"
                                       placeholder="Masukkan Password..."/>
                 </div>
