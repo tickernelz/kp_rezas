@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/class-diagram
+left to right direction
+
+class User {
+id : bigint
+nip : varchar
+nama : varchar
+username : varchar
+password : varchar
+remember_token : varchar
+created_at : timestamp
+updated_at : timestamp
+index()
+tambahindex()
+editindex()
+tambah()
+edit()
+hapus()
+}
+
+class SuratMasuk {
+id : bigint
+kode : varchar
+nomor_surat : varchar
+tanggal_masuk : date
+tanggal_surat : date
+pengirim : varchar
+kepada : varchar
+perihal : longtext
+file : varchar
+operator : varchar
+created_at : timestamp
+updated_at : timestamp
+index()
+tambahindex()
+editindex()
+tambah()
+edit()
+hapus()
+hapus_berkas()
+}
+
+class SuratKeluar {
+id : bigint
+kode : varchar
+nomor_surat : varchar
+tanggal_keluar : date
+tanggal_surat : date
+kepada : varchar
+perihal : longtext
+file : varchar
+operator : varchar
+created_at : timestamp
+updated_at : timestamp
+index()
+tambahindex()
+editindex()
+lihat()
+tambah()
+edit()
+hapus()
+hapus_berkas()
+}
+
+@enduml
